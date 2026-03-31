@@ -749,19 +749,28 @@
     /* ─── CHATBOT ─── */
     #chat-btn {
       position: fixed; bottom: 28px; right: 28px;
-      width: 52px; height: 52px;
+      height: 52px; padding: 0 24px;
       background: var(--teal); color: var(--black);
-      border-radius: 50%; border: none; font-size: 20px; cursor: pointer;
-      z-index: 9000; box-shadow: 0 4px 24px rgba(62,207,197,0.4);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform .25s, box-shadow .25s;
+      border-radius: 100px; border: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      cursor: pointer; z-index: 9000;
+      box-shadow: 0 4px 24px rgba(62,207,197,0.45);
+      display: flex; align-items: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      white-space: nowrap;
     }
-    #chat-btn:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(62,207,197,0.6); }
+    #chat-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(62,207,197,0.6); }
+    #chat-btn-icon { font-size: 18px; }
     #chat-frame {
       position: fixed; bottom: 92px; right: 28px;
       width: 390px; height: 620px;
       border: none; border-radius: 16px; z-index: 9000;
       box-shadow: 0 16px 56px rgba(0,0,0,.65); display: none;
+    }
+    @media (max-width: 480px) {
+      #chat-frame { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+      #chat-btn { right: 16px; bottom: 16px; }
     }
 
     /* ─── SCROLL REVEAL ─── */
@@ -1228,7 +1237,10 @@
 </footer>
 
 <!-- CHATBOT -->
-<button id="chat-btn" title="Chat with us">💬</button>
+<button id="chat-btn" title="Ask me anything">
+  <span id="chat-btn-icon">💬</span>
+  <span>Ask me anything</span>
+</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -1242,8 +1254,11 @@
   // ── CHAT TOGGLE
   const chatBtn = document.getElementById('chat-btn');
   const chatFrame = document.getElementById('chat-frame');
+  const chatIcon = document.getElementById('chat-btn-icon');
   chatBtn.addEventListener('click', () => {
-    chatFrame.style.display = chatFrame.style.display === 'none' ? 'block' : 'none';
+    const isOpen = chatFrame.style.display === 'block';
+    chatFrame.style.display = isOpen ? 'none' : 'block';
+    chatIcon.textContent = isOpen ? '💬' : '✕';
   });
 
   // ── COUNTER ANIMATION (stat band numbers)
