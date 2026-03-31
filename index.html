@@ -750,9 +750,9 @@
     #chat-btn {
       position: fixed; bottom: 28px; right: 28px;
       width: 56px; height: 56px;
-      background: var(--teal); color: var(--black);
+      background: var(--teal); color: #060a14;
       border-radius: 50%; border: none; font-size: 22px; cursor: pointer;
-      z-index: 9000; box-shadow: 0 4px 20px rgba(62,207,197,0.38);
+      z-index: 9999; box-shadow: 0 4px 20px rgba(62,207,197,0.38);
       display: flex; align-items: center; justify-content: center;
       transition: transform .2s, box-shadow .2s;
     }
@@ -760,7 +760,7 @@
     #chat-frame {
       position: fixed; bottom: 96px; right: 28px;
       width: 390px; height: 620px;
-      border: none; border-radius: 18px; z-index: 9000;
+      border: none; border-radius: 18px; z-index: 9999;
       box-shadow: 0 12px 48px rgba(0,0,0,.6); display: none;
     }
 
@@ -1228,7 +1228,7 @@
 </footer>
 
 <!-- CHATBOT -->
-<button id="chat-btn" title="Chat with us">💬</button>
+<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -1237,14 +1237,6 @@
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // ── CHAT TOGGLE
-  const chatBtn = document.getElementById('chat-btn');
-  const chatFrame = document.getElementById('chat-frame');
-  chatBtn.addEventListener('click', () => {
-    const isHidden = chatFrame.style.display === 'none' || chatFrame.style.display === '';
-    chatFrame.style.display = isHidden ? 'block' : 'none';
   });
 
   // ── COUNTER ANIMATION (stat band numbers)
