@@ -306,6 +306,7 @@
     <li><a href="index.html#how">How We Build</a></li>
     <li><a href="index.html#portfolio">Portfolio</a></li>
     <li><a href="index.html#partners">Partners</a></li>
+    <li><a href="service.html">Services</a></li>
   </ul>
   <a class="nav-cta" href="contact.html">Get in Touch</a>
 </nav>
@@ -378,7 +379,7 @@
           <div class="info-icon">✉️</div>
           <div class="info-item-body">
             <div class="info-item-label">Email</div>
-            <div class="info-item-val"><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></div>
+            <div class="info-item-val"><a href="/cdn-cgi/l/email-protection#ddbeae9daab4b1a9abbff3beb2b0"><span class="__cf_email__" data-cfemail="accfdfecdbc5c0d8dace82cfc3c1">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="info-item">
@@ -429,7 +430,7 @@
     <div>
       <div class="fc-title">Contact Us</div>
       <ul class="flinks">
-        <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#35564675425c594143571b565a58"><span class="__cf_email__" data-cfemail="b3d0c0f3c4dadfc7c5d19dd0dcde">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
@@ -443,7 +444,7 @@
 <button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('contact-form');
@@ -458,16 +459,3 @@
 
     const subject = encodeURIComponent(`New Inquiry from ${firstname} ${lastname} — ${company}`);
     const body = encodeURIComponent(
-      `Name: ${firstname} ${lastname}\nEmail: ${email}\nCompany: ${company}\nStage: ${stage}\n\nMessage:\n${message}`
-    );
-
-    window.location.href = `mailto:cs@wiltvb.com?subject=${subject}&body=${body}`;
-
-    // Show success message
-    document.getElementById('success-msg').style.display = 'block';
-    form.reset();
-  }
-</script>
-
-</body>
-</html>
