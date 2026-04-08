@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Wilt Venture Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #050608;
+      --dark:  #080a0f;
+      --panel: #0c0e15;
+      --card:  #10131c;
+      --rim:   rgba(255,255,255,0.06);
+      --rim2:  rgba(255,255,255,0.12);
+      --teal:  #3ecfc5;
+      --w90: rgba(255,255,255,0.90);
+      --w55: rgba(255,255,255,0.55);
+      --w30: rgba(255,255,255,0.30);
+      --w12: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px;
+      background: rgba(5,6,8,0.94);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--rim);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo { height: 44px; width: auto; }
+    .nav-logo img { height: 100%; width: auto; display: block; }
+    .nav-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.3px;
+    }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a {
+      color: var(--w30); text-decoration: none;
+      font-size: 12px; font-weight: 400; letter-spacing: 0.5px;
+      padding: 0 22px; height: 64px;
+      display: flex; align-items: center; transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 22px; right: 22px; height: 1px;
+      background: var(--teal); transform: scaleX(0); transform-origin: left;
+      transition: transform .25s ease;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: #fff; }
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--black);
+      background: var(--teal); padding: 10px 24px; border-radius: 2px;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO BAND ── */
+    .svc-hero {
+      padding: 140px 52px 80px;
+      background: linear-gradient(170deg, #05080f 0%, #08101c 50%, #050a14 100%);
+      position: relative; overflow: hidden;
+    }
+    .svc-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(62,207,197,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(62,207,197,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .svc-hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .s-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 10px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 20px;
+    }
+    .s-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+    .svc-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 7vw, 96px);
+      letter-spacing: 1px; line-height: .95;
+      color: #fff; margin-bottom: 20px;
+    }
+    .svc-hero h1 em { font-style: normal; color: var(--teal); }
+    .svc-hero p {
+      font-size: 16px; color: var(--w55); max-width: 560px; line-height: 1.75;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      padding: 100px 52px;
+      background: var(--dark);
+    }
+    .services-inner { max-width: 1200px; margin: 0 auto; }
+
+    .svc-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; border: 1px solid var(--rim);
+      margin-top: 0;
+    }
+
+    .svc-card {
+      background: var(--panel);
+      padding: 56px 52px;
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .svc-card:first-child { border-right: 1px solid var(--rim); }
+    .svc-card:hover { background: var(--card); }
+    .svc-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--teal);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .svc-card:hover::before { transform: scaleX(1); }
+
+    .svc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px; color: var(--rim2); letter-spacing: 1px;
+      line-height: 1; margin-bottom: 28px;
+      transition: color .3s;
+    }
+    .svc-card:hover .svc-num { color: rgba(62,207,197,0.15); }
+
+    .svc-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+
+    .svc-tag {
+      display: inline-flex; align-items: center;
+      font-size: 9px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--teal);
+      border: 1px solid rgba(62,207,197,0.25);
+      padding: 4px 12px; border-radius: 1px;
+      margin-bottom: 20px;
+    }
+
+    .svc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(22px, 2.5vw, 32px); font-weight: 800;
+      letter-spacing: -0.5px; color: #fff;
+      line-height: 1.15; margin-bottom: 20px;
+    }
+
+    .svc-desc {
+      font-size: 14px; color: var(--w55); line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .svc-features {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .svc-features li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 13px; color: var(--w55); line-height: 1.5;
+    }
+    .svc-features li::before {
+      content: '';
+      display: block; width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px;
+      border-radius: 50%; border: 1px solid rgba(62,207,197,0.4);
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='4,8 7,11 12,5' stroke='%233ecfc5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+    }
+
+    .svc-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: var(--teal); color: var(--black);
+      padding: 13px 28px; border-radius: 2px;
+      text-decoration: none; display: inline-block;
+      transition: opacity .2s, transform .2s;
+    }
+    .svc-cta:hover { opacity: .85; transform: translateY(-2px); }
+
+    /* ── WHY SECTION ── */
+    .why-section {
+      padding: 100px 52px;
+      background: var(--black);
+      border-top: 1px solid var(--rim);
+    }
+    .why-inner { max-width: 1200px; margin: 0 auto; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; border: 1px solid var(--rim); margin-top: 52px;
+    }
+    .why-item {
+      padding: 40px 36px;
+      border-right: 1px solid var(--rim);
+      transition: background .2s;
+    }
+    .why-item:last-child { border-right: none; }
+    .why-item:hover { background: var(--panel); }
+    .why-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .why-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px;
+    }
+    .why-desc { font-size: 13px; color: var(--w30); line-height: 1.65; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--teal);
+      padding: 0 52px;
+    }
+    .cta-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 52px 0; gap: 40px;
+    }
+    .cta-inner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3vw, 48px);
+      letter-spacing: 1px; color: var(--black);
+      margin-bottom: 6px; line-height: .95;
+    }
+    .cta-inner p { font-size: 13px; color: rgba(5,6,8,0.65); }
+    .btn-dark {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: var(--black); color: #fff;
+      padding: 14px 32px; border-radius: 2px;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity .2s, transform .2s; display: inline-block;
+    }
+    .btn-dark:hover { opacity: .85; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #02030a;
+      padding: 64px 52px 36px;
+      border-top: 1px solid var(--rim);
+    }
+    .ft-top {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 52px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--rim); margin-bottom: 28px;
+    }
+    .ft-logo { height: 44px; width: auto; margin-bottom: 12px; }
+    .ft-logo img { height: 100%; width: auto; display: block; }
+    .ft-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .ft-tag { font-size: 12px; color: var(--w30); margin-bottom: 20px; }
+    .ft-addr { font-size: 12px; color: var(--w30); line-height: 1.9; }
+    .ft-col-h { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.18); margin-bottom: 18px; }
+    .ft-links { list-style: none; }
+    .ft-links li { margin-bottom: 10px; }
+    .ft-links a { font-size: 13px; color: var(--w30); text-decoration: none; transition: color .2s; }
+    .ft-links a:hover { color: #fff; }
+    .ft-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-size: 11px; color: rgba(255,255,255,.15); }
+    .ft-badge { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); opacity: .45; }
+
+    /* ── CHATBOT ── */
+    #chat-btn {
+      position: fixed; bottom: 28px; right: 28px;
+      height: 52px; padding: 0 22px;
+      background: #F5A623; color: #fff;
+      border-radius: 100px; border: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; z-index: 9999;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.45);
+      display: flex; align-items: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    #chat-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,166,35,0.6); }
+    #chat-frame {
+      position: fixed; bottom: 92px; right: 28px;
+      width: 390px; height: 620px;
+      border: none; border-radius: 18px; z-index: 9999;
+      box-shadow: 0 12px 48px rgba(0,0,0,.6); display: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .svc-hero { padding: 110px 24px 60px; }
+      .services-section { padding: 72px 24px; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .svc-card:first-child { border-right: none; border-bottom: 1px solid var(--rim); }
+      .svc-card { padding: 44px 28px; }
+      .why-section { padding: 72px 24px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-item { border-right: none; border-bottom: 1px solid var(--rim); }
+      .why-item:last-child { border-bottom: none; }
+      .cta-band { padding: 0 24px; }
+      .cta-inner { flex-direction: column; text-align: center; padding: 48px 0; }
+      footer { padding: 48px 24px 28px; }
+      .ft-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      #chat-frame { width: calc(100vw - 32px); right: 16px; }
+    }
+    @media (max-width: 640px) {
+      .ft-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo">
+      <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
+    </div>
+    <span class="nav-wordmark">Wilt Venture Builder</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#why">Studio Model</a></li>
+    <li><a href="index.html#how">How We Build</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#partners">Partners</a></li>
+    <li><a href="service.html" class="active">Services</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="svc-hero">
+  <div class="svc-hero-inner">
+    <span class="s-eyebrow">What We Offer</span>
+    <h1>OUR <em>SERVICES</em></h1>
+    <p>Beyond venture building — we offer specialized intelligence and data services to help founders and companies move smarter across the Korea-Singapore corridor.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="services-inner">
+    <div class="svc-grid">
+
+      <!-- SERVICE 1 -->
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <span class="svc-icon">🔍</span>
+        <div class="svc-tag">Analytics · Strategy</div>
+        <h2 class="svc-title">SEO / GEO<br>Analysis Service</h2>
+        <p class="svc-desc">Comprehensive search engine and geographic market analysis to help your venture understand where the opportunities are — and how to capture them. We combine SEO intelligence with geo-specific market data across Korea, Singapore, and Southeast Asia.</p>
+        <ul class="svc-features">
+          <li>Keyword & search intent mapping across KR / SG / SEA markets</li>
+          <li>Competitor SEO benchmarking and gap analysis</li>
+          <li>Geographic demand heatmaps by sector and audience</li>
+          <li>Localisation strategy recommendations for cross-border expansion</li>
+          <li>Monthly reporting with actionable growth insights</li>
+        </ul>
+        <a class="svc-cta" href="https://wvb-wondaero.github.io/seogeo/" target="_blank">Enquire Now →</a>
+      </div>
+
+      <!-- SERVICE 2 -->
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <span class="svc-icon">📡</span>
+        <div class="svc-tag">Intelligence · Data</div>
+        <h2 class="svc-title">SEA Startup News<br>Scraping Service</h2>
+        <p class="svc-desc">Automated, curated startup and venture intelligence from across Southeast Asia — delivered in real time. Stay ahead of deal flow, funding rounds, emerging players, and market shifts without the manual research overhead.</p>
+        <ul class="svc-features">
+          <li>Daily automated scraping from 50+ SEA startup news sources</li>
+          <li>AI-powered filtering by sector, stage, and geography</li>
+          <li>Deal flow alerts — funding rounds, M&A, and new launches</li>
+          <li>Competitor and market movement tracking</li>
+          <li>Weekly digest reports delivered to your inbox</li>
+        </ul>
+        <a class="svc-cta" href="contact.html">Enquire Now →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="why-inner">
+    <span class="s-eyebrow">Why Wilt</span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,5vw,72px);letter-spacing:1px;color:#fff;margin-bottom:0;">WHY THESE SERVICES<br>FROM US</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-icon">🌏</span>
+        <div class="why-title">Korea-Singapore Native</div>
+        <div class="why-desc">We operate in both markets daily. Our data and insights are grounded in real operational experience, not just desk research.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">⚡</span>
+        <div class="why-title">Venture-Grade Intelligence</div>
+        <div class="why-desc">Built for founders and investors who need signal, not noise. Everything we surface is filtered for relevance and actionability.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">🤖</span>
+        <div class="why-title">AI-Powered at the Core</div>
+        <div class="why-desc">Our services are built on AI infrastructure — enabling scale, speed, and precision that manual research simply cannot match.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div>
+      <h2>INTERESTED IN OUR SERVICES?</h2>
+      <p>Reach out and let's discuss how we can support your growth.</p>
+    </div>
+    <a class="btn-dark" href="contact.html">Talk to Our Team →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo">
+        <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
+      </div>
+      <div class="ft-name">Wilt Venture Builder</div>
+      <div class="ft-tag">Bold Ideas. Built Together.</div>
+      <div class="ft-addr">19 CHINA STREET<br>04-01 FAR EAST SQUARE<br>SINGAPORE 049561</div>
+    </div>
+    <div>
+      <div class="ft-col-h">Navigate</div>
+      <ul class="ft-links">
+        <li><a href="index.html#why">Studio Model</a></li>
+        <li><a href="index.html#how">How We Build</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#partners">Partners</a></li>
+        <li><a href="service.html">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Connect</div>
+      <ul class="ft-links">
+        <li><a href="https://www.linkedin.com/company/wilt-venture-builder-pte-ltd/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Contact</div>
+      <ul class="ft-links">
+        <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
+        <li><a href="contact.html">Get in Touch →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">© 2024 Wilt Venture Builder Pte. Ltd. All Rights Reserved.</span>
+    <span class="ft-badge">Korea · Singapore · Global</span>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
+<iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
+
+</body>
+</html>
