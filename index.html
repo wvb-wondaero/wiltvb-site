@@ -35,29 +35,7 @@
     }
 
     /* ─── LOADER ─── */
-    #loader {
-      position: fixed; inset: 0; z-index: 10000;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 20px;
-    }
-    .loader-logo {
-      width: 64px; height: 24px;
-      animation: loaderPulse 1s ease-in-out infinite;
-    }
-    .loader-bar-track {
-      width: 160px; height: 1px;
-      background: var(--rim2);
-      position: relative; overflow: hidden;
-    }
-    .loader-bar-fill {
-      position: absolute; top: 0; left: 0;
-      height: 100%; width: 0%;
-      background: var(--teal);
-      animation: loaderFill 1.2s ease-out forwards;
-    }
-    @keyframes loaderPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-    @keyframes loaderFill { to { width: 100%; } }
+    #loader { display: none; }
 
     /* ─── NAV ─── */
     nav {
@@ -74,8 +52,8 @@
       border-bottom-color: var(--rim);
     }
     .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-    .nav-logo { width: 48px; height: 18px; }
-    .nav-logo svg { width: 100%; height: 100%; }
+    .nav-logo { height: 44px; width: auto; }
+    .nav-logo img { height: 100%; width: auto; display: block; }
     .nav-wordmark {
       font-family: 'Syne', sans-serif;
       font-size: 13px; font-weight: 700; color: #fff;
@@ -178,7 +156,7 @@
 
     .hero-h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(80px, 12vw, 172px);
+      font-size: clamp(56px, 8vw, 130px);
       line-height: 0.92;
       letter-spacing: -1px;
       color: #fff;
@@ -192,11 +170,16 @@
       display: block;
       opacity: 0; transform: translateY(100%);
     }
-    .hero-h1-line:nth-child(1) span { animation: slideUp .9s .5s cubic-bezier(.16,1,.3,1) forwards; }
-    .hero-h1-line:nth-child(2) span { animation: slideUp .9s .65s cubic-bezier(.16,1,.3,1) forwards; }
+    .hero-h1-line:nth-child(1) span { animation: slideUp .9s .3s cubic-bezier(.16,1,.3,1) forwards; }
+    .hero-h1-line:nth-child(2) span { animation: slideUp .9s .45s cubic-bezier(.16,1,.3,1) forwards; }
     .hero-h1-line:nth-child(3) span {
-      animation: slideUp .9s .80s cubic-bezier(.16,1,.3,1) forwards;
+      animation: slideUp .9s .6s cubic-bezier(.16,1,.3,1) forwards;
       color: var(--teal);
+    }
+    /* Fallback: if animation never fires, still show text */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-h1-line span { opacity: 1; transform: none; }
+      .hero-eyebrow, .hero-right, .hero-indicators { opacity: 1; transform: none; }
     }
 
     .hero-right {
@@ -734,8 +717,8 @@
       margin-bottom: 32px;
       max-width: 1300px; margin-left: auto; margin-right: auto;
     }
-    .ft-logo { width: 52px; height: 20px; margin-bottom: 14px; }
-    .ft-logo svg { width: 100%; height: 100%; }
+    .ft-logo { height: 36px; width: auto; margin-bottom: 14px; }
+    .ft-logo img { height: 100%; width: auto; display: block; }
     .ft-name {
       font-family: 'Syne', sans-serif;
       font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px;
@@ -766,31 +749,32 @@
     /* ─── CHATBOT ─── */
     #chat-btn {
       position: fixed; bottom: 28px; right: 28px;
-      width: 52px; height: 52px;
-      background: var(--teal); color: var(--black);
-      border-radius: 50%; border: none; font-size: 20px; cursor: none;
-      z-index: 9000; box-shadow: 0 4px 24px rgba(62,207,197,0.4);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform .25s, box-shadow .25s;
+      height: 52px; padding: 0 22px;
+      background: #F5A623; color: #fff;
+      border-radius: 100px; border: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; z-index: 9999;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.45);
+      display: flex; align-items: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
     }
-    #chat-btn:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(62,207,197,0.6); }
+    #chat-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,166,35,0.6); }
     #chat-frame {
       position: fixed; bottom: 92px; right: 28px;
       width: 390px; height: 620px;
-      border: none; border-radius: 16px; z-index: 9000;
-      box-shadow: 0 16px 56px rgba(0,0,0,.65); display: none;
+      border: none; border-radius: 18px; z-index: 9999;
+      box-shadow: 0 12px 48px rgba(0,0,0,.6); display: none;
+    }
+    @media (max-width: 960px) {
+      #chat-frame { width: calc(100vw - 32px); right: 16px; }
+      #chat-btn { right: 16px; bottom: 16px; }
     }
 
     /* ─── SCROLL REVEAL ─── */
-    .sr {
-      opacity: 0; transform: translateY(32px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .sr.d1 { transition-delay: .1s; }
-    .sr.d2 { transition-delay: .2s; }
-    .sr.d3 { transition-delay: .3s; }
-    .sr.d4 { transition-delay: .4s; }
-    .sr.visible { opacity: 1; transform: none; }
+    .sr { opacity: 1; transform: none; }
+    .sr.d1, .sr.d2, .sr.d3, .sr.d4 {}
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
@@ -838,25 +822,11 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <svg class="loader-logo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 96 36">
-    <path d="M88.7471 0L59.9593 28.7878L51.5858 20.3837L53.9695 18L59.9593 23.9898L83.9491 0H76.7674L59.9593 16.8082L57.5756 14.3939L71.9695 0H64.7878L36 28.7878L7.21226 0H0L36 36L47.9797 23.9898L59.9899 36L95.9593 0H88.7471Z" fill="#3D4659"/>
-    <path d="M52.7785 0L47.9805 4.79797L43.1826 0H36.0009L44.3744 8.40408L41.9907 10.7878L31.2029 0H23.9907L38.3846 14.3939L36.0009 16.8082L19.1928 0H12.0111L36.0009 23.9898L59.9907 0H52.7785Z" fill="#3ecfc5"/>
-  </svg>
-  <div class="loader-bar-track">
-    <div class="loader-bar-fill"></div>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav id="main-nav">
   <a class="nav-brand" href="index.html">
     <div class="nav-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 96 36">
-        <path d="M88.7471 0L59.9593 28.7878L51.5858 20.3837L53.9695 18L59.9593 23.9898L83.9491 0H76.7674L59.9593 16.8082L57.5756 14.3939L71.9695 0H64.7878L36 28.7878L7.21226 0H0L36 36L47.9797 23.9898L59.9899 36L95.9593 0H88.7471Z" fill="#3D4659"/>
-        <path d="M52.7785 0L47.9805 4.79797L43.1826 0H36.0009L44.3744 8.40408L41.9907 10.7878L31.2029 0H23.9907L38.3846 14.3939L36.0009 16.8082L19.1928 0H12.0111L36.0009 23.9898L59.9907 0H52.7785Z" fill="#3ecfc5"/>
-      </svg>
+      <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
     </div>
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
@@ -865,6 +835,7 @@
     <li><a href="#how">How We Build</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#partners">Partners</a></li>
+    <li><a href="service.html">Services</a></li>
   </ul>
   <a class="nav-cta" href="contact.html">Get in Touch</a>
 </nav>
@@ -1050,7 +1021,7 @@
     <div class="port-grid">
       <a class="pcard sr" href="https://nuldam.com/sub/brand02.html" target="_blank">
         <div class="pcard-bg"></div>
-        <img class="pcard-img" src="_assets/v11/join.png" alt="JoinandJoin SG" onerror="this.style.opacity='0'"/>
+        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/join.png" alt="JoinandJoin SG"/>
         <div class="pcard-overlay"></div>
         <div class="pcard-arrow">↗</div>
         <div class="pcard-content">
@@ -1066,7 +1037,7 @@
       </a>
       <a class="pcard sr d1" href="https://en.haenyeokitchen.com/" target="_blank">
         <div class="pcard-bg"></div>
-        <img class="pcard-img" src="_assets/v11/haenyeo.png" alt="Haenyeo Kitchen" onerror="this.style.opacity='0'"/>
+        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/haenyeo.png" alt="Haenyeo Kitchen"/>
         <div class="pcard-overlay"></div>
         <div class="pcard-arrow">↗</div>
         <div class="pcard-content">
@@ -1082,7 +1053,7 @@
       </a>
       <a class="pcard sr d2" href="https://www.botx-ai.com" target="_blank">
         <div class="pcard-bg"></div>
-        <img class="pcard-img" src="_assets/v11/bkend.png" alt="Popup Studio" onerror="this.style.opacity='0'"/>
+        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/bkend.png" alt="Popup Studio"/>
         <div class="pcard-overlay"></div>
         <div class="pcard-arrow">↗</div>
         <div class="pcard-content">
@@ -1134,7 +1105,7 @@
         <a class="btn-ghost" href="#" style="margin-top:16px">Learn More →</a>
       </div>
       <div class="zero-visual sr d2">
-        <img class="zero-visual-img" src="_assets/v11/zero100.png" alt="zero100"/>
+        <img class="zero-visual-img" src="https://www.wiltvb.com/_assets/v11/zero100.png" alt="zero100"/>
         <div class="zero-label-big">Z100</div>
         <div class="zero-card-footer">
           <div class="zero-card-title">zero100</div>
@@ -1196,13 +1167,13 @@
     <h2 class="s-h2 sr d1">PARTNERS</h2>
     <p class="s-body sr d2">We work with leading institutions across the startup ecosystem — in Korea, Singapore, and beyond.</p>
     <div class="partners-strip sr d3">
-      <div class="plogo"><div class="plogo-text">KOCHAM<br>Singapore</div></div>
-      <div class="plogo"><div class="plogo-text">KOTRA</div></div>
-      <div class="plogo"><div class="plogo-text">Entrepreneur<br>First</div></div>
-      <div class="plogo"><div class="plogo-text">NUS<br>Enterprise</div></div>
-      <div class="plogo"><div class="plogo-text">AWS<br>Startups</div></div>
-      <div class="plogo"><div class="plogo-text">Spring<br>Singapore</div></div>
-      <div class="plogo"><div class="plogo-text">K-Startup<br>Center</div></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
     </div>
   </div>
 </section>
@@ -1224,10 +1195,7 @@
   <div class="ft-top">
     <div>
       <div class="ft-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 96 36">
-          <path d="M88.7471 0L59.9593 28.7878L51.5858 20.3837L53.9695 18L59.9593 23.9898L83.9491 0H76.7674L59.9593 16.8082L57.5756 14.3939L71.9695 0H64.7878L36 28.7878L7.21226 0H0L36 36L47.9797 23.9898L59.9899 36L95.9593 0H88.7471Z" fill="#3D4659"/>
-          <path d="M52.7785 0L47.9805 4.79797L43.1826 0H36.0009L44.3744 8.40408L41.9907 10.7878L31.2029 0H23.9907L38.3846 14.3939L36.0009 16.8082L19.1928 0H12.0111L36.0009 23.9898L59.9907 0H52.7785Z" fill="#3ecfc5"/>
-        </svg>
+        <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
       </div>
       <div class="ft-name">Wilt Venture Builder</div>
       <div class="ft-tag">Bold Ideas. Built Together.</div>
@@ -1251,7 +1219,7 @@
     <div>
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
-        <li><a href="/cdn-cgi/l/email-protection#d7bfb2bbbbb897a0bebba3a1b5f9b4b8ba"><span class="__cf_email__" data-cfemail="ee868b828281ae9987829a988cc08d8183">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#13706053647a7f6765713d707c7e"><span class="__cf_email__" data-cfemail="bcdfcffccbd5d0c8cade92dfd3d1">[email&#160;protected]</span></a></li>
         <li><a href="contact.html">Get in Touch →</a></li>
       </ul>
     </div>
@@ -1263,48 +1231,15 @@
 </footer>
 
 <!-- CHATBOT -->
-<button id="chat-btn" title="Chat with us">💬</button>
+<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── LOADER
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const loader = document.getElementById('loader');
-      loader.style.transition = 'opacity .5s ease';
-      loader.style.opacity = '0';
-      setTimeout(() => loader.style.display = 'none', 500);
-    }, 1400);
-  });
-
   // ── NAV SCROLL
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // ── CHAT TOGGLE
-  const chatBtn = document.getElementById('chat-btn');
-  const chatFrame = document.getElementById('chat-frame');
-  chatBtn.addEventListener('click', () => {
-    chatFrame.style.display = chatFrame.style.display === 'none' ? 'block' : 'none';
-  });
-
-  // ── SCROLL REVEAL
-  const srEls = document.querySelectorAll('.sr');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  srEls.forEach(el => observer.observe(el));
-
-  // ── COUNTER ANIMATION (stat band numbers)
-  function animateCounter(el, target, suffix = '') {
-    const duration = 1800;
-    const start = performance.now();
-    const update = (now) => {
-      const t = Math.min((now - start) /
+  // �
