@@ -12,18 +12,19 @@
     :root{--black:#050608;--dark:#080a0f;--panel:#0c0e15;--card:#10131c;--rim:rgba(255,255,255,0.06);--rim2:rgba(255,255,255,0.12);--teal:#3ecfc5;--w55:rgba(255,255,255,0.55);--w30:rgba(255,255,255,0.30);}
     html{scroll-behavior:smooth}
     body{font-family:'DM Sans',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
-    nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(5,6,8,0.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--rim)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+    nav.scrolled{background:rgba(5,6,8,0.94);backdrop-filter:blur(24px);border-bottom-color:var(--rim)}
     .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
     .nav-logo{height:44px;width:auto}
     .nav-logo img{height:100%;width:auto;display:block}
-    .nav-wordmark{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff}
+    .nav-wordmark{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:0.3px}
     .nav-links{display:flex;list-style:none}
-    .nav-links a{color:var(--w30);text-decoration:none;font-size:12px;padding:0 22px;height:64px;display:flex;align-items:center;transition:color .2s;position:relative}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+    .nav-links a{color:var(--w30);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:0.5px;padding:0 22px;height:64px;display:flex;align-items:center;transition:color .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
     .nav-links a:hover,.nav-links a.active{color:#fff}
     .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-    .nav-cta{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);background:var(--teal);padding:10px 24px;border-radius:2px;text-decoration:none;transition:opacity .2s}
-    .nav-cta:hover{opacity:0.85}
+    .nav-cta{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);background:var(--teal);padding:10px 24px;border-radius:2px;text-decoration:none;transition:opacity .2s,transform .2s}
+    .nav-cta:hover{opacity:0.85;transform:translateY(-1px)}
     .hero{padding:140px 52px 80px;background:linear-gradient(170deg,#05080f 0%,#08101c 50%,#050a14 100%);position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(62,207,197,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(62,207,197,0.03) 1px,transparent 1px);background-size:80px 80px}
     .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto}
@@ -85,7 +86,7 @@
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#how">How We Build</a></li>
+    <li><a href="index.html">How We Build</a></li>
     <li><a href="portfolio.html" class="active">Portfolio</a></li>
     <li><a href="service.html">In-Bound Services</a></li>
     <li><a href="news.html">News</a></li>
@@ -189,5 +190,12 @@
 </footer>
 <button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+</script>
 </body>
 </html>
