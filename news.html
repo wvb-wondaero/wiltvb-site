@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News — Wilt Venture Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#050608;--dark:#080a0f;--panel:#0c0e15;--card:#10131c;
+      --rim:rgba(255,255,255,0.06);--rim2:rgba(255,255,255,0.12);
+      --teal:#3ecfc5;--w55:rgba(255,255,255,0.55);--w30:rgba(255,255,255,0.30);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(5,6,8,0.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--rim)}
+    .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .nav-logo{height:44px;width:auto}
+    .nav-logo img{height:100%;width:auto;display:block}
+    .nav-wordmark{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff}
+    .nav-links{display:flex;list-style:none}
+    .nav-links a{color:var(--w30);text-decoration:none;font-size:12px;padding:0 22px;height:64px;display:flex;align-items:center;transition:color .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+    .nav-cta{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);background:var(--teal);padding:10px 24px;border-radius:2px;text-decoration:none;transition:opacity .2s}
+    .nav-cta:hover{opacity:0.85}
+
+    /* HERO */
+    .hero{padding:140px 52px 80px;background:linear-gradient(170deg,#05080f 0%,#08101c 50%,#050a14 100%);position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(62,207,197,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(62,207,197,0.03) 1px,transparent 1px);background-size:80px 80px}
+    .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+    .eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+    .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,96px);letter-spacing:1px;line-height:.95;color:#fff;margin-bottom:20px}
+    .hero h1 em{font-style:normal;color:var(--teal)}
+    .hero p{font-size:15px;color:var(--w55);max-width:520px;line-height:1.8}
+
+    /* NEWS SECTION */
+    .news-section{padding:100px 52px;background:var(--dark)}
+    .news-inner{max-width:1200px;margin:0 auto}
+
+    /* FILTER */
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:52px}
+    .filter-btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 18px;border-radius:2px;border:1px solid var(--rim2);background:transparent;color:var(--w30);cursor:pointer;transition:all .2s}
+    .filter-btn:hover,.filter-btn.active{background:var(--teal);color:var(--black);border-color:var(--teal)}
+
+    /* FEATURED CARD */
+    .news-featured{
+      display:grid;grid-template-columns:1fr 1fr;
+      border:1px solid var(--rim);margin-bottom:2px;
+      text-decoration:none;color:#fff;
+      background:var(--panel);position:relative;overflow:hidden;
+      transition:background .2s;
+    }
+    .news-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+    .news-featured:hover{background:var(--card)}
+    .news-featured:hover::before{transform:scaleX(1)}
+    .feat-visual{
+      position:relative;overflow:hidden;min-height:320px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .feat-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.65;transition:opacity .4s,transform .4s}
+    .news-featured:hover .feat-visual img{opacity:.8;transform:scale(1.03)}
+    .feat-visual-bg{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:80px;opacity:.07;
+    }
+    .feat-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--panel) 100%)}
+    .feat-body{padding:52px 48px;display:flex;flex-direction:column;justify-content:center}
+    .feat-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+    .feat-new{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--teal);color:var(--black);padding:4px 10px;border-radius:1px}
+
+    /* GRID */
+    .news-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border:1px solid var(--rim)}
+    .news-card{
+      background:var(--panel);text-decoration:none;color:#fff;display:flex;flex-direction:column;
+      border-right:1px solid var(--rim);
+      transition:background .2s;position:relative;overflow:hidden;
+    }
+    .news-grid .news-card:nth-child(3n){border-right:none}
+    .news-card:hover{background:var(--card)}
+    .news-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+    .news-card:hover::before{transform:scaleX(1)}
+
+    /* card visual strip */
+    .card-visual{
+      height:160px;overflow:hidden;position:relative;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--card);
+    }
+    .card-visual img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .4s,transform .4s}
+    .news-card:hover .card-visual img{opacity:.75;transform:scale(1.04)}
+    .card-visual-bg{
+      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    }
+    .cv-emoji{font-size:36px;opacity:.25}
+    .cv-source{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+    .card-body{padding:24px 28px 28px;display:flex;flex-direction:column;flex:1}
+    .card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .card-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(62,207,197,0.25);padding:3px 9px;border-radius:1px}
+    .card-date{font-size:10px;color:var(--w30)}
+    .card-source{font-size:10px;color:rgba(255,255,255,.35);font-weight:600}
+    .card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:10px;flex:1}
+    .card-desc{font-size:12px;color:var(--w55);line-height:1.7;margin-bottom:16px}
+    .card-arrow{font-size:11px;font-weight:700;color:var(--teal);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;margin-top:auto}
+    .news-card:hover .card-arrow,.news-featured:hover .card-arrow{gap:10px}
+
+    /* shared meta/title styles for featured */
+    .card-meta-lg{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .card-title-lg{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.25;margin-bottom:14px}
+    .card-desc-lg{font-size:14px;color:var(--w55);line-height:1.8;margin-bottom:24px}
+
+    /* FOOTER */
+    footer{background:#02030a;padding:64px 52px 36px;border-top:1px solid var(--rim)}
+    .ft-top{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;padding-bottom:48px;border-bottom:1px solid var(--rim);margin-bottom:28px}
+    .ft-logo{height:44px;width:auto;margin-bottom:12px}
+    .ft-logo img{height:100%;width:auto;display:block}
+    .ft-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:6px}
+    .ft-tag{font-size:12px;color:var(--w30);margin-bottom:20px}
+    .ft-addr{font-size:12px;color:var(--w30);line-height:1.9}
+    .ft-col-h{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:18px}
+    .ft-links{list-style:none}
+    .ft-links li{margin-bottom:10px}
+    .ft-links a{font-size:13px;color:var(--w30);text-decoration:none;transition:color .2s}
+    .ft-links a:hover{color:#fff}
+    .ft-bottom{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .ft-copy{font-size:11px;color:rgba(255,255,255,.15)}
+    .ft-badge{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);opacity:.45}
+
+    /* CHATBOT */
+    #chat-btn{position:fixed;bottom:28px;right:28px;height:52px;padding:0 22px;background:#F5A623;color:#fff;border-radius:100px;border:none;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;z-index:9999;box-shadow:0 4px 20px rgba(245,166,35,0.45);display:flex;align-items:center;gap:10px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+    #chat-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,166,35,0.6)}
+    #chat-frame{position:fixed;bottom:92px;right:28px;width:390px;height:620px;border:none;border-radius:18px;z-index:9999;box-shadow:0 12px 48px rgba(0,0,0,.6);display:none}
+
+    @media(max-width:1024px){
+      nav{padding:0 24px}.nav-links{display:none}
+      .hero,.news-section{padding-left:24px;padding-right:24px}
+      .news-featured{grid-template-columns:1fr}
+      .feat-visual{min-height:200px}
+      .feat-overlay{background:linear-gradient(180deg,transparent 60%,var(--panel) 100%)}
+      .feat-body{padding:32px 28px}
+      .news-grid{grid-template-columns:1fr 1fr}
+      .news-grid .news-card:nth-child(3n){border-right:1px solid var(--rim)}
+      .news-grid .news-card:nth-child(2n){border-right:none}
+      footer{padding:48px 24px 28px}.ft-top{grid-template-columns:1fr 1fr;gap:36px}
+      #chat-frame{width:calc(100vw - 32px);right:16px}
+    }
+    @media(max-width:640px){
+      .news-grid{grid-template-columns:1fr}
+      .news-grid .news-card{border-right:none;border-bottom:1px solid var(--rim)}
+      .ft-top{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo"><img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/></div>
+    <span class="nav-wordmark">Wilt Venture Builder</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How We Build</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="service.html">In-Bound Services</a></li>
+    <li><a href="news.html" class="active">News</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Get in Touch</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Press & Media</span>
+    <h1>WILT IN THE<br><em>NEWS.</em></h1>
+    <p>Coverage, features, and press mentions of Wilt Venture Builder and our ventures.</p>
+  </div>
+</div>
+
+<section class="news-section">
+  <div class="news-inner">
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterNews('all',this)">All</button>
+      <button class="filter-btn" onclick="filterNews('wilt',this)">Wilt · 원대로</button>
+      <button class="filter-btn" onclick="filterNews('haenyeo',this)">해녀의 부엌</button>
+      <button class="filter-btn" onclick="filterNews('nuldam',this)">널담</button>
+      <button class="filter-btn" onclick="filterNews('popup',this)">팝업스튜디오</button>
+    </div>
+
+    <!-- ── FEATURED: 2026-04-15 ── -->
+    <a class="news-featured" href="https://www.etnews.com/20260415000104" target="_blank" data-cat="wilt popup">
+      <div class="feat-visual">
+        <div class="feat-visual-bg">🤖</div>
+        <div class="feat-overlay"></div>
+      </div>
+      <div class="feat-body">
+        <div class="feat-badge">
+          <span class="feat-new">Latest</span>
+          <span class="card-tag">Wilt · 팝업스튜디오</span>
+        </div>
+        <div class="card-meta-lg">
+          <span class="card-date">2026-04-15</span>
+          <span class="card-source">전자신문 ETNews</span>
+        </div>
+        <div class="card-title-lg">"워킹맘, 비개발자도 AI로 앱 만든다"</div>
+        <div class="card-desc-lg">싱가포르 주재 벤처스튜디오 윌트 벤처 빌더, 팝업스튜디오 등 AI 파트너들의 지원으로 비개발자 여성 인재들이 4주 만에 MVP를 구현한 사례. AI 빌더 시대의 새로운 직무 역량 소개.</div>
+        <span class="card-arrow">Read Article →</span>
+      </div>
+    </a>
+
+    <!-- ── GRID ── -->
+    <div class="news-grid" id="news-grid">
+
+      <!-- 2026-03-22 ETNews -->
+      <a class="news-card" href="https://www.etnews.com/20260323000147" target="_blank" data-cat="popup">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">⚙️</span>
+            <span class="cv-source">전자신문</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">팝업스튜디오</span>
+            <span class="card-date">2026-03-22</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">전자신문 ETNews</span>
+          <div class="card-title">K-제조 경쟁력에 AI 내재화…제조AI 스타트업 6개사 '엑스모스' 출범</div>
+          <div class="card-desc">팝업스튜디오가 AI 프레임워크/OS 핵심 기술 개발 역할로 참여.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2026-03-01 노컷뉴스 -->
+      <a class="news-card" href="https://www.nocutnews.co.kr/news/6478265" target="_blank" data-cat="haenyeo">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🍽️</span>
+            <span class="cv-source">노컷뉴스</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">해녀의 부엌</span>
+            <span class="card-date">2026-03-01</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">노컷뉴스</span>
+          <div class="card-title">제주해녀의 부엌 싱가포르 방문·진출 기사</div>
+          <div class="card-desc">해녀의 부엌 싱가포르점 진출, 제주 문화와 식문화를 현지에서 전개.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2026-03-01 동아일보 -->
+      <a class="news-card" href="https://www.donga.com/news/Politics/article/all/20260302/133449268/2" target="_blank" data-cat="haenyeo">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🇸🇬</span>
+            <span class="cv-source">동아일보</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">해녀의 부엌</span>
+            <span class="card-date">2026-03-01</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">동아일보</span>
+          <div class="card-title">싱가포르에서 제주 음식 '감탄'</div>
+          <div class="card-desc">싱가포르 아트하우스 내 해녀의 부엌 방문 기사, 현지 반응과 전시·공연 소개.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2026-03-01 Daum -->
+      <a class="news-card" href="https://v.daum.net/v/20260302203116137" target="_blank" data-cat="haenyeo">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🫕</span>
+            <span class="cv-source">Daum</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">해녀의 부엌</span>
+            <span class="card-date">2026-03-01</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">Daum</span>
+          <div class="card-title">김혜경 여사, 싱가포르에서 제주 음식 '감탄'</div>
+          <div class="card-desc">해녀의 부엌 싱가포르점 방문과 관광 활성화 간담회 내용.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2026-01-06 매일경제 -->
+      <a class="news-card" href="https://www.mk.co.kr/news/business/11925846" target="_blank" data-cat="popup wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">💰</span>
+            <span class="cv-source">매일경제</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">팝업스튜디오 · Wilt</span>
+            <span class="card-date">2026-01-06</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">매일경제</span>
+          <div class="card-title">팝업스튜디오, 15억 원 시드 투자 유치</div>
+          <div class="card-desc">WVB(윌트)와 AI 스튜디오 덥덥덥의 합작벤처, 트랜스링크 투자 유치.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2026-01-06 벤처스퀘어 -->
+      <a class="news-card" href="https://blog.naver.com/venturesquare_/224137482043" target="_blank" data-cat="popup wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🚀</span>
+            <span class="cv-source">벤처스퀘어</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">팝업스튜디오 · Wilt</span>
+            <span class="card-date">2026-01-06</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">벤처스퀘어</span>
+          <div class="card-title">팝업스튜디오, 15억 원 시드 투자 유치</div>
+          <div class="card-desc">글로벌 바이브코더 대상 개발 인프라·커뮤니티, WVB와 공동 설립.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2025-10-28 NewsPic -->
+      <a class="news-card" href="https://m.newspic.kr/view.html?nid=2025102811084816887&pn=434&cp=l1NnR32T&rssOption=NONE" target="_blank" data-cat="nuldam wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">☕</span>
+            <span class="cv-source">NewsPic</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">널담 · Wilt</span>
+            <span class="card-date">2025-10-28</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">NewsPic</span>
+          <div class="card-title">K-푸드테크 '널담', 싱가포르 교두보 확보</div>
+          <div class="card-desc">널담의 싱가포르 확장, Scape 입점, 복합 문화공간 콘셉트.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2025-10-27 와우테일 -->
+      <a class="news-card" href="https://wowtale.net/2025/10/28/249313/" target="_blank" data-cat="nuldam wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🌿</span>
+            <span class="cv-source">와우테일</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">널담 · Wilt</span>
+            <span class="card-date">2025-10-27</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">와우테일</span>
+          <div class="card-title">널담, 싱가포르 법인 설립…동남아 시장 본격 공략</div>
+          <div class="card-desc">싱가포르 오차드로드에 '널담은 공간' 1호점 오픈, 윌트벤처빌더와 파트너십.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2025-10-27 KSPost -->
+      <a class="news-card" href="https://www.kspost.biz/ko-kr/articles/1831" target="_blank" data-cat="nuldam wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🏙️</span>
+            <span class="cv-source">KSPost</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">널담 · Wilt</span>
+            <span class="card-date">2025-10-27</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">KSPost</span>
+          <div class="card-title">비건 푸드테크 '널담', 싱가포르 법인 설립…동남아 시장 본격</div>
+          <div class="card-desc">싱가포르 법인 설립과 오차드로드 카페 오픈, Wilt Venture와 파트너십.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2025-09-15 아웃스탠딩 -->
+      <a class="news-card" href="https://contents.premium.naver.com/outstanding/outstandcrew/authors/1881d117b94egv" target="_blank" data-cat="wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">📋</span>
+            <span class="cv-source">아웃스탠딩</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Wilt · 원대로</span>
+            <span class="card-date">2025-09-15</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">아웃스탠딩</span>
+          <div class="card-title">원대로 콘텐츠 목록</div>
+          <div class="card-desc">원대로 대표 관련 기사 목록과 프로필 — 싱가포르 스타트업 자문과 벤처빌딩.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2024-12-24 머니투데이 -->
+      <a class="news-card" href="https://www.mt.co.kr/future/2024/12/25/2024120907143920489" target="_blank" data-cat="wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🌏</span>
+            <span class="cv-source">머니투데이</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Wilt · 원대로</span>
+            <span class="card-date">2024-12-24</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">머니투데이 / 유니콘팩토리</span>
+          <div class="card-title">반골기질 K-창업 DNA, 글로벌서 통해…벤처스튜디오로 지원</div>
+          <div class="card-desc">원대로 대표의 이력, 윌트벤처빌더 설립 배경, 싱가포르 벤처스튜디오 전략.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2023-11-17 조선일보 -->
+      <a class="news-card" href="https://www.chosun.com/economy/smb-venture/2023/11/17/I6H3PAG7UZA4XMB24URZ34SRUQ/" target="_blank" data-cat="wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">📰</span>
+            <span class="cv-source">조선일보</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Wilt · 원대로</span>
+            <span class="card-date">2023-11-17</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">조선일보</span>
+          <div class="card-title">한국 스타트업의 싱가포르 활용법</div>
+          <div class="card-desc">한국 스타트업의 싱가포르 활용법과 싱가포르 벤처빌딩 생태계 언급.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+      <!-- 2023-02-24 조선일보 -->
+      <a class="news-card" href="https://www.chosun.com/economy/smb-venture/2023/02/24/FWLFVAYYKJE2FDXFSPJKKIX424/" target="_blank" data-cat="wilt">
+        <div class="card-visual">
+          <div class="card-visual-bg">
+            <span class="cv-emoji">🇸🇬</span>
+            <span class="cv-source">조선일보</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Wilt · 원대로</span>
+            <span class="card-date">2023-02-24</span>
+          </div>
+          <span class="card-source" style="margin-bottom:10px;display:block">조선일보</span>
+          <div class="card-title">남의 돈(정부 지원금)으로 싱가포르 진출하러 오셨나요?</div>
+          <div class="card-desc">싱가포르 진출, 정부 지원금 활용, 현지 진출 전략 관련.</div>
+          <span class="card-arrow">Read →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo"><img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/></div>
+      <div class="ft-name">Wilt Venture Builder</div>
+      <div class="ft-tag">Bold Ideas. Built Together.</div>
+      <div class="ft-addr">19 CHINA STREET<br>04-01 FAR EAST SQUARE<br>SINGAPORE 049561</div>
+    </div>
+    <div>
+      <div class="ft-col-h">Navigate</div>
+      <ul class="ft-links">
+        <li><a href="index.html#how">How We Build</a></li>
+        <li><a href="index.html#partners">Partners</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="service.html">In-Bound Services</a></li>
+        <li><a href="news.html">News</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Connect</div>
+      <ul class="ft-links">
+        <li><a href="https://www.linkedin.com/company/wilt-venture-builder-pte-ltd/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Contact</div>
+      <ul class="ft-links">
+        <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
+        <li><a href="contact.html">Get in Touch →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">© 2024 Wilt Venture Builder Pte. Ltd. All Rights Reserved.</span>
+    <span class="ft-badge">Korea · Singapore · Global</span>
+  </div>
+</footer>
+
+<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
+<iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
+
+<script>
+function filterNews(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Featured card
+  const featured = document.querySelector('.news-featured');
+  if (featured) {
+    const fc = featured.getAttribute('data-cat') || '';
+    featured.style.display = (cat === 'all' || fc.includes(cat)) ? '' : 'none';
+  }
+  // Grid cards
+  document.querySelectorAll('#news-grid .news-card').forEach(card => {
+    const cats = card.getAttribute('data-cat') || '';
+    card.style.display = (cat === 'all' || cats.includes(cat)) ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
