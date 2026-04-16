@@ -23,6 +23,13 @@
       --w55: rgba(255,255,255,0.55);
       --w30: rgba(255,255,255,0.30);
       --w12: rgba(255,255,255,0.07);
+      /* Light section vars */
+      --light-bg: #ffffff;
+      --light-alt: #f5f7fa;
+      --light-text: #0e1220;
+      --light-sub: rgba(14,18,32,0.55);
+      --light-rim: rgba(14,18,32,0.08);
+      --light-rim2: rgba(14,18,32,0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -320,59 +327,38 @@
     }
 
     /* ─── WHY / COMPARISON ─── */
-    .why { background: var(--dark); }
-    .why-top {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: end; margin-bottom: 64px;
-    }
-    .why-note { font-size: 14px; color: var(--w30); line-height: 1.8; padding-top: 20px; }
-
-    .why-table {
-      border: 1px solid var(--rim); border-radius: 0;
-      overflow: hidden;
-    }
-    .wt-head {
-      display: grid; grid-template-columns: 220px 1fr 1fr 1fr;
-      border-bottom: 1px solid var(--rim);
-    }
+    .why { background: var(--light-bg); }
+    .why-top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+    .why .s-h2 { color: var(--light-text); }
+    .why-note { font-size: 14px; color: var(--light-sub); line-height: 1.8; padding-top: 20px; }
+    .why-table { border: 1px solid var(--light-rim); border-radius: 0; overflow: hidden; }
+    .wt-head { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; border-bottom: 1px solid var(--light-rim); }
     .wt-col-label {
-      padding: 20px 28px;
-      font-family: 'Syne', sans-serif;
-      font-size: 13px; font-weight: 700; color: #fff;
-      border-right: 1px solid var(--rim);
+      padding: 20px 28px; font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 700; color: var(--light-text);
+      border-right: 1px solid var(--light-rim);
     }
     .wt-col-label:last-child { border-right: none; }
     .wt-col-label.hl { color: var(--teal); }
-    .wt-col-label.hl-wrap {
-      background: rgba(62,207,197,0.06);
-      position: relative;
-    }
+    .wt-col-label.hl-wrap { background: rgba(62,207,197,0.06); position: relative; }
     .wt-col-label.hl-wrap::after {
-      content: 'WE ARE THIS';
-      position: absolute; top: 10px; right: 12px;
-      font-size: 8px; font-weight: 700; letter-spacing: 1.5px;
-      color: var(--teal); opacity: .7;
+      content: 'WE ARE THIS'; position: absolute; top: 10px; right: 12px;
+      font-size: 8px; font-weight: 700; letter-spacing: 1.5px; color: var(--teal); opacity: .7;
     }
     .wt-row {
       display: grid; grid-template-columns: 220px 1fr 1fr 1fr;
-      border-bottom: 1px solid var(--rim);
-      transition: background .2s;
+      border-bottom: 1px solid var(--light-rim); transition: background .2s;
     }
     .wt-row:last-child { border-bottom: none; }
-    .wt-row:hover { background: var(--w12); }
+    .wt-row:hover { background: rgba(62,207,197,0.04); }
     .wt-cell {
-      padding: 18px 28px;
-      font-size: 14px; color: var(--w55);
-      border-right: 1px solid var(--rim);
-      display: flex; align-items: center;
+      padding: 18px 28px; font-size: 14px; color: var(--light-sub);
+      border-right: 1px solid var(--light-rim); display: flex; align-items: center;
     }
     .wt-cell:last-child { border-right: none; }
-    .wt-cell.key { color: var(--w30); font-size: 12px; font-weight: 500; letter-spacing: .3px; }
-    .wt-cell.hl { color: #fff; font-weight: 600; background: rgba(62,207,197,0.04); }
-    .wt-stat {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px; letter-spacing: 1px; color: var(--w30);
-    }
+    .wt-cell.key { color: rgba(14,18,32,0.38); font-size: 12px; font-weight: 500; letter-spacing: .3px; }
+    .wt-cell.hl { color: var(--light-text); font-weight: 600; background: rgba(62,207,197,0.05); }
+    .wt-stat { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: rgba(14,18,32,0.25); }
     .wt-stat.teal { color: var(--teal); }
 
     /* ─── HOW ─── */
@@ -413,21 +399,15 @@
     .hs-desc { font-size: 12px; color: var(--w30); line-height: 1.65; }
 
     /* ─── PORTFOLIO ─── */
-    .portfolio { background: var(--dark); }
-    .port-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-end; margin-bottom: 52px;
-    }
-    .port-count {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px; letter-spacing: 2px; color: var(--w30);
-    }
+    .portfolio { background: var(--light-alt); }
+    .port-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; }
+    .port-count { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--light-sub); }
+    .portfolio .s-h2 { color: var(--light-text); }
+    .portfolio .s-eyebrow { color: var(--teal); }
 
     .port-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px;
-      border: 1px solid var(--rim);
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px; border: 1px solid var(--light-rim);
     }
     .pcard {
       display: block; text-decoration: none; color: #fff;
@@ -538,15 +518,11 @@
     }
 
     /* ─── ZERO100 ─── */
-    .zero { background: var(--dark); }
-    .zero-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .zero-text .s-h2 { margin-bottom: 28px; }
-    .zero-text p {
-      font-size: 14px; color: var(--w55); line-height: 1.8; margin-bottom: 16px;
-    }
+    .zero { background: var(--light-bg); }
+    .zero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .zero-text .s-h2 { margin-bottom: 28px; color: var(--light-text); }
+    .zero-text p { font-size: 14px; color: var(--light-sub); line-height: 1.8; margin-bottom: 16px; }
+    .zero .s-eyebrow { color: var(--teal); }
     .zero-visual {
       position: relative; aspect-ratio: 1;
       border: 1px solid var(--rim);
@@ -620,28 +596,23 @@
     .fc-desc { font-size: 13px; color: var(--w30); line-height: 1.6; }
 
     /* ─── PARTNERS ─── */
-    .partners { background: var(--dark); }
+    .partners { background: var(--light-alt); }
+    .partners .s-h2 { color: var(--light-text); }
+    .partners .s-body { color: var(--light-sub); }
+    .partners .s-eyebrow { color: var(--teal); }
     .partners-strip {
       display: flex; align-items: stretch;
-      border: 1px solid var(--rim);
-      margin-top: 52px;
-      overflow: hidden;
+      border: 1px solid var(--light-rim); margin-top: 52px; overflow: hidden;
     }
     .plogo {
-      flex: 1;
-      height: 88px;
+      flex: 1; height: 88px;
       display: flex; align-items: center; justify-content: center;
-      border-right: 1px solid var(--rim);
-      padding: 16px;
-      opacity: .28; transition: opacity .3s, background .3s;
-      cursor: default;
+      border-right: 1px solid var(--light-rim); padding: 16px;
+      opacity: .4; transition: opacity .3s, background .3s; cursor: default;
     }
     .plogo:last-child { border-right: none; }
-    .plogo:hover { opacity: .75; background: var(--w12); }
-    .plogo-text {
-      font-size: 11px; font-weight: 700; letter-spacing: .8px;
-      color: #fff; text-align: center; line-height: 1.4;
-    }
+    .plogo:hover { opacity: .8; background: rgba(14,18,32,0.04); }
+    .plogo-text { font-size: 11px; font-weight: 700; letter-spacing: .8px; color: var(--light-text); text-align: center; line-height: 1.4; }
 
     /* ─── MID CTA BAND ─── */
     .mid-cta-band {
@@ -726,8 +697,8 @@
     .ft-tag { font-size: 12px; color: var(--w30); margin-bottom: 22px; }
     .ft-addr { font-size: 12px; color: var(--w30); line-height: 2; }
     .ft-col-h {
-      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: rgba(255,255,255,.18); margin-bottom: 20px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 18px;
     }
     .ft-links { list-style: none; }
     .ft-links li { margin-bottom: 12px; }
@@ -831,11 +802,10 @@
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#why">Studio Model</a></li>
     <li><a href="#how">How We Build</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#partners">Partners</a></li>
-    <li><a href="service.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="service.html">In-Bound Services</a></li>
+    <li><a href="news.html">News</a></li>
   </ul>
   <a class="nav-cta" href="contact.html">Get in Touch</a>
 </nav>
@@ -917,52 +887,6 @@
   </div>
 </div>
 
-<!-- WHY -->
-<section class="why" id="why">
-  <div class="s-inner">
-    <div class="why-top">
-      <div class="sr">
-        <span class="s-eyebrow">Why Choose Us</span>
-        <h2 class="s-h2">THE VENTURE<br>STUDIO EDGE</h2>
-      </div>
-      <p class="why-note sr d1">Traditional VC invests from a distance. Accelerators mentor for months and move on. We build — as your co-founder. That structural difference produces a fundamentally different outcome at every stage of the journey.</p>
-    </div>
-
-    <div class="why-table sr d2">
-      <div class="wt-head">
-        <div class="wt-col-label" style="border-bottom:none; color:var(--w30); font-size:11px; letter-spacing:1px;">METRIC</div>
-        <div class="wt-col-label">Accelerator</div>
-        <div class="wt-col-label hl-wrap hl">Venture Studio</div>
-        <div class="wt-col-label">Traditional VC</div>
-      </div>
-      <div class="wt-row">
-        <div class="wt-cell key">Success Rate</div>
-        <div class="wt-cell"><span class="wt-stat">~15%</span></div>
-        <div class="wt-cell hl"><span class="wt-stat teal">60%+</span></div>
-        <div class="wt-cell"><span class="wt-stat">~10%</span></div>
-      </div>
-      <div class="wt-row">
-        <div class="wt-cell key">Involvement</div>
-        <div class="wt-cell">3–6 months</div>
-        <div class="wt-cell hl">Co-founder</div>
-        <div class="wt-cell">Low</div>
-      </div>
-      <div class="wt-row">
-        <div class="wt-cell key">Equity Taken</div>
-        <div class="wt-cell">5–10%</div>
-        <div class="wt-cell hl">20–50%</div>
-        <div class="wt-cell">10–20%</div>
-      </div>
-      <div class="wt-row">
-        <div class="wt-cell key">Time to Exit</div>
-        <div class="wt-cell">7+ years</div>
-        <div class="wt-cell hl">4 years</div>
-        <div class="wt-cell">8+ years</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- HOW -->
 <section class="how" id="how">
   <div class="s-inner">
@@ -1008,69 +932,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portfolio">
-  <div class="s-inner">
-    <div class="port-top sr">
-      <div>
-        <span class="s-eyebrow">Portfolio</span>
-        <h2 class="s-h2">VENTURES<br>WE'VE BUILT</h2>
-      </div>
-      <div class="port-count">03 ACTIVE VENTURES</div>
-    </div>
-    <div class="port-grid">
-      <a class="pcard sr" href="https://nuldam.com/sub/brand02.html" target="_blank">
-        <div class="pcard-bg"></div>
-        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/join.png" alt="JoinandJoin SG"/>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-arrow">↗</div>
-        <div class="pcard-content">
-          <div class="pcard-sector">F&B · Singapore</div>
-          <div class="pcard-name">JoinandJoin SG</div>
-          <div class="pcard-desc">Bringing functional vegan desserts and Korean cultural experiences to Southeast Asia. Flagship concept café at SCAPE Orchard, Singapore.</div>
-          <div class="pcard-tags">
-            <span class="ptag">Product Localization</span>
-            <span class="ptag">Venture Design</span>
-            <span class="ptag">Ops Support</span>
-          </div>
-        </div>
-      </a>
-      <a class="pcard sr d1" href="https://en.haenyeokitchen.com/" target="_blank">
-        <div class="pcard-bg"></div>
-        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/haenyeo.png" alt="Haenyeo Kitchen"/>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-arrow">↗</div>
-        <div class="pcard-content">
-          <div class="pcard-sector">F&B · Cultural</div>
-          <div class="pcard-name">Haenyeo Kitchen Group</div>
-          <div class="pcard-desc">Co-developing a cultural food experience at Singapore's historic Arts House — blending Jeju heritage, food, and storytelling for a global audience.</div>
-          <div class="pcard-tags">
-            <span class="ptag">Business Modeling</span>
-            <span class="ptag">Experience Design</span>
-            <span class="ptag">SEA Strategy</span>
-          </div>
-        </div>
-      </a>
-      <a class="pcard sr d2" href="https://www.botx-ai.com" target="_blank">
-        <div class="pcard-bg"></div>
-        <img class="pcard-img" src="https://www.wiltvb.com/_assets/v11/bkend.png" alt="Popup Studio"/>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-arrow">↗</div>
-        <div class="pcard-content">
-          <div class="pcard-sector">AI · Tech</div>
-          <div class="pcard-name">Popup Studio</div>
-          <div class="pcard-desc">AI Studio for the Vibe Coding era. Bkend auto-generates backend infrastructure and admin pages — built for AI entrepreneurs.</div>
-          <div class="pcard-tags">
-            <span class="ptag">AI Backend</span>
-            <span class="ptag">Vibe Coding</span>
-            <span class="ptag">AI Entrepreneur</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- VALUE SPLIT -->
 <div class="value-split">
   <div class="vs-grid">
@@ -1091,74 +952,6 @@
     </div>
   </div>
 </div>
-
-<!-- ZERO100 -->
-<section class="zero">
-  <div class="s-inner">
-    <div class="zero-grid">
-      <div class="zero-text sr">
-        <span class="s-eyebrow">Founder Building</span>
-        <h2 class="s-h2">FOUNDER<br>INITIATIVES<br>— ZERO100</h2>
-        <p>We don't just co-build startups — we build founders.</p>
-        <p>Zero100 is a founder development program created and led by Wilt Venture Builder, built on the belief that the journey from 0 to 100 defines a resilient founder.</p>
-        <p>Born from a desire to address the "missing middle" of Korea's startup ecosystem — where many startups stop at 10 while few reach 100.</p>
-        <a class="btn-ghost" href="#" style="margin-top:16px">Learn More →</a>
-      </div>
-      <div class="zero-visual sr d2">
-        <img class="zero-visual-img" src="https://www.wiltvb.com/_assets/v11/zero100.png" alt="zero100"/>
-        <div class="zero-label-big">Z100</div>
-        <div class="zero-card-footer">
-          <div class="zero-card-title">zero100</div>
-          <div class="zero-card-sub">0 to 100 Entrepreneur Building Program</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MID CTA BAND -->
-<div class="mid-cta-band">
-  <div class="mid-cta-inner">
-    <div class="mid-cta-text">
-      <h2>HAVE A VENTURE IDEA?<br>LET'S BUILD IT TOGETHER.</h2>
-      <p>Whether you're at concept stage or ready to scale into Singapore — we want to hear from you.</p>
-    </div>
-    <a class="btn-dark" href="contact.html">Talk to Our Team →</a>
-  </div>
-</div>
-
-<!-- FOCUS -->
-<section class="focus">
-  <div class="s-inner">
-    <div class="focus-header sr">
-      <span class="s-eyebrow">Our Interest</span>
-      <h2 class="s-h2">FOCUS AREAS</h2>
-      <p class="s-body">We invest deep expertise across four core sectors where Korea-Singapore cross-border opportunity is greatest.</p>
-    </div>
-    <div class="focus-grid">
-      <div class="fc-item sr">
-        <span class="fc-icon">🤖</span>
-        <div class="fc-title">AI & Technology</div>
-        <div class="fc-desc">Machine learning, automation platforms, and AI-native product companies.</div>
-      </div>
-      <div class="fc-item sr d1">
-        <span class="fc-icon">🍽️</span>
-        <div class="fc-title">F&B</div>
-        <div class="fc-desc">Restaurant concepts, food tech, and hospitality brands with cross-border expansion potential.</div>
-      </div>
-      <div class="fc-item sr d2">
-        <span class="fc-icon">🎬</span>
-        <div class="fc-title">Content & Media</div>
-        <div class="fc-desc">Digital content platforms, entertainment IP, and Korean Wave-adjacent media plays.</div>
-      </div>
-      <div class="fc-item sr d3">
-        <span class="fc-icon">💼</span>
-        <div class="fc-title">B2B SaaS</div>
-        <div class="fc-desc">Enterprise software and productivity tools built for Asian market distribution.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PARTNERS -->
 <section class="partners" id="partners">
@@ -1204,10 +997,11 @@
     <div>
       <div class="ft-col-h">Navigate</div>
       <ul class="ft-links">
-        <li><a href="#why">Studio Model</a></li>
         <li><a href="#how">How We Build</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#partners">Partners</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="service.html">In-Bound Services</a></li>
+        <li><a href="news.html">News</a></li>
       </ul>
     </div>
     <div>
@@ -1219,7 +1013,7 @@
     <div>
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
-        <li><a href="/cdn-cgi/l/email-protection#13706053647a7f6765713d707c7e"><span class="__cf_email__" data-cfemail="bcdfcffccbd5d0c8cade92dfd3d1">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
         <li><a href="contact.html">Get in Touch →</a></li>
       </ul>
     </div>
