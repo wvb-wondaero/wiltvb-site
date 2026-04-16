@@ -601,18 +601,26 @@
     .partners .s-body { color: var(--light-sub); }
     .partners .s-eyebrow { color: var(--teal); }
     .partners-strip {
-      display: flex; align-items: stretch;
+      display: flex; align-items: center; justify-content: center;
       border: 1px solid var(--light-rim); margin-top: 52px; overflow: hidden;
+      flex-wrap: wrap;
     }
     .plogo {
-      flex: 1; height: 88px;
+      flex: 1; min-width: 200px; height: 100px;
       display: flex; align-items: center; justify-content: center;
-      border-right: 1px solid var(--light-rim); padding: 16px;
-      opacity: .4; transition: opacity .3s, background .3s; cursor: default;
+      border-right: 1px solid var(--light-rim); padding: 24px 36px;
+      transition: opacity .3s, background .3s;
     }
     .plogo:last-child { border-right: none; }
-    .plogo:hover { opacity: .8; background: rgba(14,18,32,0.04); }
-    .plogo-text { font-size: 11px; font-weight: 700; letter-spacing: .8px; color: var(--light-text); text-align: center; line-height: 1.4; }
+    .plogo:hover { background: rgba(14,18,32,0.04); }
+    .plogo img {
+      max-height: 40px; max-width: 160px;
+      width: auto; height: auto;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.3);
+      transition: filter .3s;
+    }
+    .plogo:hover img { filter: grayscale(0%) brightness(1); }
 
     /* ─── MID CTA BAND ─── */
     .mid-cta-band {
@@ -960,13 +968,9 @@
     <h2 class="s-h2 sr d1">PARTNERS</h2>
     <p class="s-body sr d2">We work with leading institutions across the startup ecosystem — in Korea, Singapore, and beyond.</p>
     <div class="partners-strip sr d3">
-      <div class="plogo"></div>
-      <div class="plogo"></div>
-      <div class="plogo"></div>
-      <div class="plogo"></div>
-      <div class="plogo"></div>
-      <div class="plogo"></div>
-      <div class="plogo"></div>
+      <div class="plogo"><img src="_assets/v11/Translink.png" alt="Translink Investment"/></div>
+      <div class="plogo"><img src="_assets/v11/dcamp.png" alt="D.CAMP"/></div>
+      <div class="plogo"><img src="_assets/v11/Codepresso.png" alt="code.presso"/></div>
     </div>
   </div>
 </section>
@@ -978,7 +982,7 @@
     <p>We're ready when you are. Reach out and let's start building something that matters.</p>
     <div class="final-btns">
       <a class="btn-fill" href="contact.html" style="font-size:12px;padding:16px 44px;">Let's Work Together</a>
-      <a class="btn-ghost" href="#why" style="font-size:12px;padding:16px 44px;">Explore Our Model</a>
+      <a class="btn-ghost" href="#how" style="font-size:12px;padding:16px 44px;">Explore Our Model</a>
     </div>
   </div>
 </section>
