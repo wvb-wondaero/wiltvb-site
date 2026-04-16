@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
   <title>Wilt Venture Builder — Bold Ideas. Built Together.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -50,12 +53,15 @@
       height: 64px;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 52px;
-      transition: background .4s, border-color .4s;
-      border-bottom: 1px solid transparent;
+      background: rgba(5,6,8,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--rim);
     }
     nav.scrolled {
       background: rgba(5,6,8,0.94);
       backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom-color: var(--rim);
     }
     .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
@@ -601,27 +607,31 @@
     .partners .s-body { color: var(--light-sub); }
     .partners .s-eyebrow { color: var(--teal); }
     .partners-strip {
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--light-rim); margin-top: 52px; overflow: hidden;
+      display: flex; align-items: stretch; justify-content: center;
+      background: #ffffff;
+      border: 1px solid var(--light-rim);
+      border-radius: 4px;
+      margin-top: 52px; overflow: hidden;
       flex-wrap: wrap;
     }
     .plogo {
-      flex: 1; min-width: 200px; height: 100px;
+      flex: 1; min-width: 200px; min-height: 120px;
       display: flex; align-items: center; justify-content: center;
-      border-right: 1px solid var(--light-rim); padding: 24px 36px;
-      transition: opacity .3s, background .3s;
+      border-right: 1px solid var(--light-rim); padding: 32px 40px;
+      transition: background .3s;
+      background: #ffffff;
     }
     .plogo:last-child { border-right: none; }
-    .plogo:hover { background: rgba(14,18,32,0.04); }
+    .plogo:hover { background: #fafbfc; }
     .plogo img {
-      max-height: 40px; max-width: 160px;
+      max-height: 56px; max-width: 180px;
       width: auto; height: auto;
       object-fit: contain;
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) brightness(0.4) contrast(1.2);
-      transition: filter .3s;
+      display: block;
+      transition: transform .3s, opacity .3s;
+      opacity: 0.85;
     }
-    .plogo:hover img { filter: grayscale(0%) brightness(1); }
+    .plogo:hover img { opacity: 1; transform: scale(1.04); }
 
     /* ─── MID CTA BAND ─── */
     .mid-cta-band {
@@ -969,9 +979,9 @@
     <h2 class="s-h2 sr d1">PARTNERS</h2>
     <p class="s-body sr d2">We work with leading institutions across the startup ecosystem — in Korea, Singapore, and beyond.</p>
     <div class="partners-strip sr d3">
-      <div class="plogo"><img src="_assets/v11/Translink.png" alt="Translink Investment"/></div>
-      <div class="plogo"><img src="_assets/v11/dcamp.png" alt="D.CAMP"/></div>
-      <div class="plogo"><img src="_assets/v11/Codepresso.png" alt="code.presso"/></div>
+      <div class="plogo"><img src="_assets/v11/Translink.png?v=20260416" alt="Translink Investment" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:700;font-size:15px;color:#0e1220;letter-spacing:1px;\'>TRANSLINK</span>';"/></div>
+      <div class="plogo"><img src="_assets/v11/dcamp.png?v=20260416" alt="D.CAMP" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:700;font-size:15px;color:#0e1220;letter-spacing:1px;\'>D.CAMP</span>';"/></div>
+      <div class="plogo"><img src="_assets/v11/Codepresso.png?v=20260416" alt="code.presso" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:700;font-size:15px;color:#0e1220;letter-spacing:1px;\'>CODE.PRESSO</span>';"/></div>
     </div>
   </div>
 </section>
@@ -1041,4 +1051,9 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // �
+  // ── BFCACHE DEFEAT (뒤로가기로 돌아왔을 때 옛날 캐시 UI 방지)
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted || (window.performance && window.performance.navigation && window.performance.navigation.type === 2)) {
+      window.location.reload();
+    }
+  });
