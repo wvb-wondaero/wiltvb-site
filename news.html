@@ -175,30 +175,29 @@
 </head>
 <body>
 
-<nav>
+<nav id="main-nav">
   <a class="nav-brand" href="/">
     <div class="nav-logo"><img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/></div>
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
     <li><a href="/#how">How We Build</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="service.html">In-Bound Services</a></li>
-    <li><a href="news.html" class="active">News</a></li>
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/service.html">In-Bound Services</a></li>
+    <li><a href="/news.html" class="active">News</a></li>
   </ul>
-  <a class="nav-cta" href="contact.html">Get in Touch</a>
+  <a class="nav-cta" href="/contact.html">Get in Touch</a>
   <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/">How We Build</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="service.html">In-Bound Services</a>
-  <a href="news.html">News</a>
-  <a class="mobile-cta" href="contact.html">Get in Touch</a>
+  <a href="/#how" onclick="closeMobileMenu()">How We Build</a>
+  <a href="/portfolio.html">Portfolio</a>
+  <a href="/service.html">In-Bound Services</a>
+  <a href="/news.html">News</a>
+  <a class="mobile-cta" href="/contact.html">Get in Touch</a>
 </div>
 
 <div class="hero">
@@ -220,7 +219,6 @@
       <button class="filter-btn" onclick="filterNews('popup',this)">팝업스튜디오</button>
     </div>
 
-    <!-- ── FEATURED: 2026-04-15 ── -->
     <a class="news-featured" href="https://www.etnews.com/20260415000104" target="_blank" data-cat="wilt popup">
       <div class="feat-visual">
         <div class="feat-visual-bg">🤖</div>
@@ -241,10 +239,8 @@
       </div>
     </a>
 
-    <!-- ── GRID ── -->
     <div class="news-grid" id="news-grid">
 
-      <!-- 2026-03-22 ETNews -->
       <a class="news-card" href="https://www.etnews.com/20260323000147" target="_blank" data-cat="popup">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -264,7 +260,6 @@
         </div>
       </a>
 
-      <!-- 2026-03-01 노컷뉴스 -->
       <a class="news-card" href="https://www.nocutnews.co.kr/news/6478265" target="_blank" data-cat="haenyeo">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -284,7 +279,6 @@
         </div>
       </a>
 
-      <!-- 2026-03-01 동아일보 -->
       <a class="news-card" href="https://www.donga.com/news/Politics/article/all/20260302/133449268/2" target="_blank" data-cat="haenyeo">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -304,7 +298,6 @@
         </div>
       </a>
 
-      <!-- 2026-03-01 Daum -->
       <a class="news-card" href="https://v.daum.net/v/20260302203116137" target="_blank" data-cat="haenyeo">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -324,7 +317,6 @@
         </div>
       </a>
 
-      <!-- 2026-01-06 매일경제 -->
       <a class="news-card" href="https://www.mk.co.kr/news/business/11925846" target="_blank" data-cat="popup wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -344,7 +336,6 @@
         </div>
       </a>
 
-      <!-- 2026-01-06 벤처스퀘어 -->
       <a class="news-card" href="https://blog.naver.com/venturesquare_/224137482043" target="_blank" data-cat="popup wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -364,7 +355,6 @@
         </div>
       </a>
 
-      <!-- 2025-10-28 NewsPic -->
       <a class="news-card" href="https://m.newspic.kr/view.html?nid=2025102811084816887&pn=434&cp=l1NnR32T&rssOption=NONE" target="_blank" data-cat="nuldam wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -384,7 +374,6 @@
         </div>
       </a>
 
-      <!-- 2025-10-27 와우테일 -->
       <a class="news-card" href="https://wowtale.net/2025/10/28/249313/" target="_blank" data-cat="nuldam wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -404,7 +393,6 @@
         </div>
       </a>
 
-      <!-- 2025-10-27 KSPost -->
       <a class="news-card" href="https://www.kspost.biz/ko-kr/articles/1831" target="_blank" data-cat="nuldam wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -424,7 +412,6 @@
         </div>
       </a>
 
-      <!-- 2025-09-15 아웃스탠딩 -->
       <a class="news-card" href="https://contents.premium.naver.com/outstanding/outstandcrew/authors/1881d117b94egv" target="_blank" data-cat="wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -444,7 +431,6 @@
         </div>
       </a>
 
-      <!-- 2024-12-24 머니투데이 -->
       <a class="news-card" href="https://www.mt.co.kr/future/2024/12/25/2024120907143920489" target="_blank" data-cat="wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -464,7 +450,6 @@
         </div>
       </a>
 
-      <!-- 2023-11-17 조선일보 -->
       <a class="news-card" href="https://www.chosun.com/economy/smb-venture/2023/11/17/I6H3PAG7UZA4XMB24URZ34SRUQ/" target="_blank" data-cat="wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -484,7 +469,6 @@
         </div>
       </a>
 
-      <!-- 2023-02-24 조선일보 -->
       <a class="news-card" href="https://www.chosun.com/economy/smb-venture/2023/02/24/FWLFVAYYKJE2FDXFSPJKKIX424/" target="_blank" data-cat="wilt">
         <div class="card-visual">
           <div class="card-visual-bg">
@@ -521,9 +505,9 @@
       <ul class="ft-links">
         <li><a href="/#how">How We Build</a></li>
         <li><a href="/#partners">Partners</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="service.html">In-Bound Services</a></li>
-        <li><a href="news.html">News</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/service.html">In-Bound Services</a></li>
+        <li><a href="/news.html">News</a></li>
       </ul>
     </div>
     <div>
@@ -536,7 +520,7 @@
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
         <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
-        <li><a href="contact.html">Get in Touch →</a></li>
+        <li><a href="/contact.html">Get in Touch →</a></li>
       </ul>
     </div>
   </div>
@@ -571,11 +555,20 @@ function filterNews(cat, btn) {
   // ── MOBILE HAMBURGER MENU
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburgerBtn.addEventListener('click', function() {
-    hamburgerBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
+
+  if(hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', function() {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+
+  function closeMobileMenu() {
+    if(hamburgerBtn) hamburgerBtn.classList.remove('active');
+    if(mobileMenu) mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
 </body>
 </html>
