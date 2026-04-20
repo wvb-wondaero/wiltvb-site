@@ -552,6 +552,12 @@ function filterNews(cat, btn) {
 </script>
 
 <script>
+  // ── BFCACHE DEFEAT (뒤로가기로 돌아왔을 때 옛날 캐시 UI 방지)
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted || (window.performance && window.performance.navigation && window.performance.navigation.type === 2)) {
+      window.location.reload();
+    }
+  });
   // ── MOBILE HAMBURGER MENU
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
