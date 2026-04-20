@@ -12,7 +12,7 @@
     :root{--black:#050608;--dark:#080a0f;--panel:#0c0e15;--card:#10131c;--rim:rgba(255,255,255,0.06);--rim2:rgba(255,255,255,0.12);--teal:#3ecfc5;--w55:rgba(255,255,255,0.55);--w30:rgba(255,255,255,0.30);}
     html{scroll-behavior:smooth}
     body{font-family:'DM Sans',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
-    nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(5,6,8,0.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--rim)}
     nav.scrolled{background:rgba(5,6,8,0.94);backdrop-filter:blur(24px);border-bottom-color:var(--rim)}
     .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
     .nav-logo{height:44px;width:auto}
@@ -75,24 +75,49 @@
     #chat-btn{position:fixed;bottom:28px;right:28px;height:52px;padding:0 22px;background:#F5A623;color:#fff;border-radius:100px;border:none;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;z-index:9999;box-shadow:0 4px 20px rgba(245,166,35,0.45);display:flex;align-items:center;gap:10px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
     #chat-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,166,35,0.6)}
     #chat-frame{position:fixed;bottom:92px;right:28px;width:390px;height:620px;border:none;border-radius:18px;z-index:9999;box-shadow:0 12px 48px rgba(0,0,0,.6);display:none}
-    @media(max-width:1024px){nav{padding:0 24px}.nav-links{display:none}.hero,.port-section{padding-left:24px;padding-right:24px}.port-grid{grid-template-columns:1fr}.pcard{aspect-ratio:3/2}.cta-band{padding:0 24px}.cta-inner{flex-direction:column;text-align:center;padding:48px 0}footer{padding:48px 24px 28px}.ft-top{grid-template-columns:1fr 1fr;gap:36px}#chat-frame{width:calc(100vw - 32px);right:16px}}
+    @media(max-width:1024px){nav{padding:0 24px}.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}.hero,.port-section{padding-left:24px;padding-right:24px}.port-grid{grid-template-columns:1fr}.pcard{aspect-ratio:3/2}.cta-band{padding:0 24px}.cta-inner{flex-direction:column;text-align:center;padding:48px 0}footer{padding:48px 24px 28px}.ft-top{grid-template-columns:1fr 1fr;gap:36px}#chat-frame{width:calc(100vw - 32px);right:16px}}
     @media(max-width:640px){.ft-top{grid-template-columns:1fr}}
+  
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;cursor:pointer;background:none;border:none;padding:0;gap:5px;z-index:601}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:1px;transition:transform .3s,opacity .3s}
+    .nav-hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-hamburger.active span:nth-child(2){opacity:0}
+    .nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,6,8,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:499;flex-direction:column;padding:40px 32px;opacity:0;transition:opacity .3s ease}
+    .mobile-menu.open{display:flex;opacity:1}
+    .mobile-menu a{color:rgba(255,255,255,0.9);text-decoration:none;font-family:'Syne',sans-serif;font-size:18px;font-weight:600;letter-spacing:0.5px;padding:20px 0;border-bottom:1px solid var(--rim);transition:color .2s}
+    .mobile-menu a:last-child{border-bottom:none}
+    .mobile-menu a:hover{color:var(--teal)}
+    .mobile-menu .mobile-cta{margin-top:32px;display:inline-block;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);background:var(--teal);padding:14px 32px;border-radius:2px;text-decoration:none;text-align:center;border-bottom:none}
+    .mobile-menu .mobile-cta:hover{color:var(--black);opacity:0.85}
   </style>
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="index.html">
+  <a class="nav-brand" href="/">
     <div class="nav-logo"><img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/></div>
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">How We Build</a></li>
+    <li><a href="/">How We Build</a></li>
     <li><a href="portfolio.html" class="active">Portfolio</a></li>
     <li><a href="service.html">In-Bound Services</a></li>
     <li><a href="news.html">News</a></li>
   </ul>
   <a class="nav-cta" href="contact.html">Get in Touch</a>
+  <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/">How We Build</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="service.html">In-Bound Services</a>
+  <a href="news.html">News</a>
+  <a class="mobile-cta" href="contact.html">Get in Touch</a>
+</div>
 <div class="hero">
   <div class="hero-inner">
     <span class="eyebrow">Portfolio</span>
@@ -162,8 +187,8 @@
     <div>
       <div class="ft-col-h">Navigate</div>
       <ul class="ft-links">
-        <li><a href="index.html#how">How We Build</a></li>
-        <li><a href="index.html#partners">Partners</a></li>
+        <li><a href="/#how">How We Build</a></li>
+        <li><a href="/#partners">Partners</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="service.html">In-Bound Services</a></li>
         <li><a href="news.html">News</a></li>
@@ -196,6 +221,16 @@
     nav.classList.toggle('scrolled', window.scrollY > 20);
   });
   nav.classList.toggle('scrolled', window.scrollY > 20);
+</script>
+<script>
+  // ── MOBILE HAMBURGER MENU
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', function() {
+    hamburgerBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
 </script>
 </body>
 </html>
